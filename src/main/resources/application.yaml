@@ -1,3 +1,42 @@
 spring:
   application:
     name: room-service
+
+  # ── DataSource JDBC (HikariCP) — usado por JdbcTemplate ──────────────────
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hotel_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 20000
+      idle-timeout: 300000
+
+  # ── Base de datos R2DBC (reactivo) ──────────────────────────────────────────
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/hotel_db
+    username: postgres
+    password: postgres
+    pool:
+      initial-size: 5
+      max-size: 20
+      max-idle-time: 30m
+
+  # ── Flyway / SQL inicialización ─────────────────────────────────────────────
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+# ── Puerto del servidor ──────────────────────────────────────────────────────
+server:
+  port: 8080
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+logging:
+  level:
+    com.hotel: DEBUG
+    org.springframework.r2dbc: DEBUG
+    org.springframework.jdbc: DEBUG
