@@ -1,6 +1,6 @@
-package com.hotel.pedidos.domain.port;
+package com.hotel.room_service.domain.port;
 
-import com.hotel.pedidos.domain.model.MenuCategoria;
+import com.hotel.room_service.domain.model.MenuCategoria;
 import reactor.core.publisher.Flux;
 
 public interface MenuCategoriaRepository {

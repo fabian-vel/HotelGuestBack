@@ -1,8 +1,8 @@
-package com.hotel.pedidos.application;
+package com.hotel.room_service.application;
 
-import com.hotel.pedidos.controller.dto.MenuCategoriaResponse;
-import com.hotel.pedidos.domain.port.MenuCategoriaRepository;
-import com.hotel.pedidos.infrastructure.mapper.MenuCategoriaMapper;
+import com.hotel.room_service.controller.dto.MenuCategoriaResponse;
+import com.hotel.room_service.domain.port.MenuCategoriaRepository;
+import com.hotel.room_service.infrastructure.mapper.MenuCategoriaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

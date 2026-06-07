@@ -1,6 +1,6 @@
-package com.hotel.pedidos.controller;
+package com.hotel.room_service.controller;
 
-import com.hotel.pedidos.application.ConsultarCategoriasUseCase;
+import com.hotel.room_service.application.ConsultarCategoriasUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

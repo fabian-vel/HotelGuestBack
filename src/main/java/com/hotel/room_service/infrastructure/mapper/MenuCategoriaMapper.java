@@ -1,7 +1,7 @@
-package com.hotel.pedidos.infrastructure.mapper;
+package com.hotel.room_service.infrastructure.mapper;
 
-import com.hotel.pedidos.controller.dto.MenuCategoriaResponse;
-import com.hotel.pedidos.domain.model.MenuCategoria;
+import com.hotel.room_service.controller.dto.MenuCategoriaResponse;
+import com.hotel.room_service.domain.model.MenuCategoria;
 import org.springframework.stereotype.Component;
 
 @Component

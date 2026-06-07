@@ -1,4 +1,4 @@
-package com.hotel.pedidos.controller;
+package com.hotel.room_service.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +18,6 @@ public class MenuCategoriaRouter {
     @Bean
     public RouterFunction<ServerResponse> categoriasRoutes(MenuCategoriaHandler handler) {
         return RouterFunctions
-                // GET /api/v1/categorias
-                // Query param opcional: ?parentIds=1,2,3
                 .route(GET("/api/v1/categorias"), handler::consultarCategorias);
     }
 }

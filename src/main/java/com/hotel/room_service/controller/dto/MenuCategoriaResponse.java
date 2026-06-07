@@ -1,4 +1,4 @@
-package com.hotel.pedidos.controller.dto;
+package com.hotel.room_service.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
