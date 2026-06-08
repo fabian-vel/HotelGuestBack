@@ -25,4 +25,5 @@ server:
 logging:
   level:
     com.hotel: DEBUG
-    org.springframework.r2dbc: DEBUG
+    org.springframework.r2dbc: INFO
+    org.springframework.r2dbc.core.DefaultDatabaseClient: OFF

@@ -17,9 +17,6 @@ public class MenuCategoriaHandler {
         return consultarCategoriasUseCase.ejecutar()
                 .flatMap(categorias -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .bodyValue(categorias))
-                .onErrorResume(ex -> ServerResponse
-                        .status(500)
-                        .bodyValue("Error al consultar categorías: " + ex.getMessage()));
+                        .bodyValue(categorias));
     }
 }
