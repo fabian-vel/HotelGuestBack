@@ -4,7 +4,6 @@ import com.hotel.room_service.application.ConsultarCategoriasUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
@@ -14,12 +13,8 @@ public class MenuCategoriaHandler {
 
     private final ConsultarCategoriasUseCase consultarCategoriasUseCase;
 
-    public Mono<ServerResponse> consultarCategorias(ServerRequest request) {
-
-        String parentIds = request.queryParam("parentIds").orElse(null);
-
-        return consultarCategoriasUseCase.ejecutar(parentIds)
-                .collectList()
+    public Mono<ServerResponse> consultarCategorias() {
+        return consultarCategoriasUseCase.ejecutar()
                 .flatMap(categorias -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(categorias))
@@ -28,4 +23,3 @@ public class MenuCategoriaHandler {
                         .bodyValue("Error al consultar categorías: " + ex.getMessage()));
     }
 }
-

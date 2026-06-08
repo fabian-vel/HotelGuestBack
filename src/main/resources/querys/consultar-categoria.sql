@@ -1,14 +1,14 @@
-SELECT
-    meca_id,
-    meca_nombre,
-    meca_descripcion,
-    meca_imagen_url,
-    meca_parent_id
-FROM mst_menu_categorias
-WHERE meca_estado = 'A'
-  AND (
-    (CAST(? AS VARCHAR) IS NULL AND meca_parent_id IS NULL)
-        OR
-    (CAST(? AS VARCHAR) IS NOT NULL AND meca_parent_id = ANY(string_to_array(?, ',')::SMALLINT[]))
-    )
-ORDER BY meca_nombre
+SELECT P.MECA_ID          AS MECA_ID_PADRE,
+       P.MECA_NOMBRE      AS MECA_NOMBRE_PADRE,
+       P.MECA_DESCRIPCION AS MECA_DESCRIPCION_PADRE,
+       P.MECA_IMAGEN_URL  AS MECA_IMAGEN_URL_PADRE,
+       H.MECA_ID          AS MECA_ID_HIJO,
+       H.MECA_NOMBRE      AS MECA_NOMBRE_HIJO,
+       H.MECA_DESCRIPCION AS MECA_DESCRIPCION_HIJO,
+       H.MECA_IMAGEN_URL  AS MECA_IMAGEN_URL_HIJO,
+       H.MECA_PARENT_ID   AS MECA_PARENT_ID
+FROM MST_MENU_CATEGORIAS as P
+         LEFT JOIN MST_MENU_CATEGORIAS as H
+                   ON P.MECA_ID = H.MECA_PARENT_ID
+WHERE P.MECA_ESTADO = 'A'
+  AND H.MECA_ESTADO = 'A'

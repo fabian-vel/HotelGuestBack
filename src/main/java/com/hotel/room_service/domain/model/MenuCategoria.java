@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,5 +18,6 @@ public class MenuCategoria {
     private String mecaDescripcion;
     private String mecaImagenUrl;
     private Short  mecaParentId;
+    private List<MenuCategoria> subCategorias;
 }
 

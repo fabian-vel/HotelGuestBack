@@ -1,28 +1,26 @@
 package com.hotel.room_service.infrastructure.mapper;
 
-import com.hotel.room_service.domain.model.MenuCategoria;
+import com.hotel.room_service.infrastructure.model.MenuCategoriaRow;
+import io.r2dbc.spi.Row;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public class MenuCategoriaRowMapper implements RowMapper<MenuCategoria> {
-
-    private final MenuCategoriaMapper mapper;
-
-    @Override
-    public MenuCategoria mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return mapper.toDomain(
-                rs.getShort("meca_id"),
-                rs.getString("meca_nombre"),
-                rs.getString("meca_descripcion"),
-                rs.getString("meca_imagen_url"),
-                rs.getObject("meca_parent_id", Short.class)
-        );
+public class MenuCategoriaRowMapper {
+    public MenuCategoriaRow mapRow(Row row) {
+        return MenuCategoriaRow.builder()
+                .padreId(row.get("meca_id_padre", Short.class))
+                .padreNombre(row.get("meca_nombre_padre", String.class))
+                .padreDescripcion(row.get("meca_descripcion_padre", String.class))
+                .padreImagenUrl(row.get("meca_imagen_url_padre", String.class))
+                .hijoId(row.get("meca_id_hijo", Short.class))
+                .hijoNombre(row.get("meca_nombre_hijo", String.class))
+                .hijoDescripcion(row.get("meca_descripcion_hijo", String.class))
+                .hijoImagenUrl(row.get("meca_imagen_url_hijo", String.class))
+                .build();
     }
 }
 

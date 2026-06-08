@@ -8,17 +8,12 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 
-/**
- * Enrutador funcional WebFlux.
- * Define las rutas sin @RestController; cada ruta mapea a un método del handler.
- */
 @Configuration
 public class MenuCategoriaRouter {
 
     @Bean
     public RouterFunction<ServerResponse> categoriasRoutes(MenuCategoriaHandler handler) {
         return RouterFunctions
-                .route(GET("/api/v1/categorias"), handler::consultarCategorias);
+                .route(GET("/api/v1/categorias"), request -> handler.consultarCategorias());
     }
 }
-

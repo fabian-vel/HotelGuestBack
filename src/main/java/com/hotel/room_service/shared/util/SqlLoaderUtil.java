@@ -1,15 +1,16 @@
 package com.hotel.room_service.shared.util;
 
 import com.hotel.room_service.domain.exception.SqlLoadException;
+import lombok.experimental.UtilityClass;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-@Component
+
+@UtilityClass
 public class SqlLoaderUtil {
     public static String load(String path) {
         return Optional.of(path)
