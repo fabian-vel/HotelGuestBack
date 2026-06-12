@@ -19,7 +19,7 @@ spring:
 
 # ── Puerto del servidor ──────────────────────────────────────────────────────
 server:
-  port: 8081
+  port: 8083
 
 # ── Logs ─────────────────────────────────────────────────────────────────────
 logging:
@@ -27,3 +27,6 @@ logging:
     com.hotel: DEBUG
     org.springframework.r2dbc: INFO
     org.springframework.r2dbc.core.DefaultDatabaseClient: OFF
+# ── JWT ─────────────────────────────────────────────────────────────────────
+jwt:
+  secret: qX8$Nf2!Kz7@Lp4#Rw9&Ty6*Vm3%Hs1^Dc5?Bj8+Ua2=Eg7!
