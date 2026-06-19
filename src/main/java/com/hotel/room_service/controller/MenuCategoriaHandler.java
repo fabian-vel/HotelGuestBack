@@ -1,6 +1,6 @@
 package com.hotel.room_service.controller;
 
-import com.hotel.room_service.application.ConsultarCategoriasUseCase;
+import com.hotel.room_service.application.MenuCategoriaUseCase;
 import com.hotel.room_service.application.transformer.MenuCategoriaTransformer;
 import com.hotel.room_service.shared.constant.SuccessMessages;
 import com.hotel.room_service.shared.response.ApiResponse;
@@ -14,10 +14,10 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class MenuCategoriaHandler {
 
-    private final ConsultarCategoriasUseCase consultarCategoriasUseCase;
+    private final MenuCategoriaUseCase menuCategoriaUseCase;
 
     public Mono<ServerResponse> consultarCategorias() {
-        return consultarCategoriasUseCase.ejecutar()
+        return menuCategoriaUseCase.consultarCategorias()
                 .map(categorias -> categorias.stream()
                         .map(MenuCategoriaTransformer::toResponse)
                         .toList()

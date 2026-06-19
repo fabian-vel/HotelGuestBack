@@ -11,11 +11,11 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-public class ConsultarCategoriasUseCase {
+public class MenuCategoriaUseCase {
 
     private final MenuCategoriaRepository menuCategoriaRepository;
 
-    public Mono<List<MenuCategoria>> ejecutar() {
+    public Mono<List<MenuCategoria>> consultarCategorias() {
         return menuCategoriaRepository.consultarCategorias()
                 .map(this::agruparCategorias);
     }
