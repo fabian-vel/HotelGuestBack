@@ -18,7 +18,7 @@ public class MenuItemRowMapper {
                 .meitPrecio(precio != null ? precio : 0d)
                 .meitImagenUrl(row.get("meit_imagen_url", String.class))
                 .mecaId(row.get("meca_id", Short.class))
-                .mecaParentId(row.get("meca_id_padre", Short.class))
+                .mecaParentId(row.get("meca_parent_id", Short.class))
                 .build();
     }
 }

@@ -14,7 +14,7 @@ public class MenuItemRouter {
     @Bean
     public RouterFunction<ServerResponse> menuItemRoutes(MenuItemHandler handler) {
         return RouterFunctions
-                .route(POST("/api/v1/menu-items"), handler::consultaItemsPorCategoria);
+                .route(POST("/api/v1/menu"), handler::consultaItemsPorCategoria);
     }
 }
 

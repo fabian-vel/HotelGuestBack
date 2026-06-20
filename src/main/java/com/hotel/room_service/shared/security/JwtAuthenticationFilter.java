@@ -1,6 +1,7 @@
 package com.hotel.room_service.shared.security;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
@@ -10,6 +11,7 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter implements WebFilter {
@@ -20,7 +22,6 @@ public class JwtAuthenticationFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String path = exchange.getRequest().getPath().value();
 
-        // rutas públicas — no validan token
         if (path.startsWith("/api/v1/auth")) {
             return chain.filter(exchange);
         }
@@ -29,7 +30,10 @@ public class JwtAuthenticationFilter implements WebFilter {
                 .getHeaders()
                 .getFirst(HttpHeaders.AUTHORIZATION);
 
+        log.info("Path: {}, AuthHeader presente: {}", path, authHeader != null);
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            log.warn("Sin token o formato inválido");
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
@@ -43,6 +47,7 @@ public class JwtAuthenticationFilter implements WebFilter {
                                         .withAuthentication(authentication))
                 )
                 .onErrorResume(ex -> {
+                    log.error("Error validando token: {}", ex.getMessage(), ex); // ← clave
                     exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                     return exchange.getResponse().setComplete();
                 });
