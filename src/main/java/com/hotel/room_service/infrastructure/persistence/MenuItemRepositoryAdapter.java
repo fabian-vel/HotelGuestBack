@@ -1,6 +1,5 @@
 package com.hotel.room_service.infrastructure.persistence;
 
-import com.hotel.room_service.domain.exception.BusinessException;
 import com.hotel.room_service.domain.exception.InternalServerErrorException;
 import com.hotel.room_service.domain.model.MenuItem;
 import com.hotel.room_service.domain.model.MenuItemRequest;
