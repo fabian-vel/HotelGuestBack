@@ -19,5 +19,4 @@ public class HabitacionAccesoRow {
     private String haacClienteDoc;
     private LocalDateTime haacFechaInicio;
     private LocalDateTime haacFechaFin;
-    private String haacEstado;
 }

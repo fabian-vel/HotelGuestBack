@@ -21,7 +21,7 @@ public class LoginUseCase {
     private final JwtService jwtService;
 
     public Mono<TokenResponse> ejecutar(LoginRequest request) {
-        return accesoRepository.findByHabitacionAndCodigo(
+        return accesoRepository.consultaHabitacionAcceso(
                         request.habitacion(),
                         request.codigo()
                 )
