@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HabitacionAccesoRequest {
-    private String haacId;
+    private Short haacId;
 }
