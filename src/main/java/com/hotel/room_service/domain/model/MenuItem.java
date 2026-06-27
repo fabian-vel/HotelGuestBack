@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,4 +19,5 @@ public class MenuItem {
     private String meitImagenUrl;
     private Short mecaId;
     private Short mecaParentId;
+    private List<Etiqueta> etiquetas;
 }

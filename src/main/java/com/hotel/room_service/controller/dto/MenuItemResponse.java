@@ -1,5 +1,7 @@
 package com.hotel.room_service.controller.dto;
 
+import java.util.List;
+
 public record MenuItemResponse(
         Short meitId,
         String meitNombre,
@@ -7,6 +9,7 @@ public record MenuItemResponse(
         double meitPrecio,
         String meitImagenUrl,
         Short mecaId,
-        Short mecaParentId
+        Short mecaParentId,
+        List<EtiquetaResponse> etiquetas
 ) {
 }
