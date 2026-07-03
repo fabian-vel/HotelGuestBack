@@ -13,7 +13,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class ConsultaPedidoRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> cosnultarPedidoRoutes(ConsultaPedidoHandler handler) {
+    public RouterFunction<ServerResponse> consultarPedidoRoutes(ConsultaPedidoHandler handler) {
         return RouterFunctions
                 .route(GET("/api/v1/consulta-pedidos"), request -> handler.consultarPedido());
     }
