@@ -1,4 +1,4 @@
-package com.hotel.room_service.application;
+package com.hotel.room_service.application.usecase;
 
 import com.hotel.room_service.domain.exception.BusinessException;
 import com.hotel.room_service.domain.model.MenuItem;

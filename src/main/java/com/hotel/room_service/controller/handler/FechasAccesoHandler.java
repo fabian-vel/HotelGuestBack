@@ -1,6 +1,6 @@
-package com.hotel.room_service.controller;
+package com.hotel.room_service.controller.handler;
 
-import com.hotel.room_service.application.FechasAccesoUseCase;
+import com.hotel.room_service.application.usecase.FechasAccesoUseCase;
 import com.hotel.room_service.application.transformer.FechaAccesoTransformer;
 import com.hotel.room_service.domain.model.HabitacionAccesoRequest;
 import com.hotel.room_service.shared.response.ApiResponse;

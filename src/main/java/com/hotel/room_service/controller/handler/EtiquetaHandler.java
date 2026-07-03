@@ -1,6 +1,6 @@
-package com.hotel.room_service.controller;
+package com.hotel.room_service.controller.handler;
 
-import com.hotel.room_service.application.EtiquetaUseCase;
+import com.hotel.room_service.application.usecase.EtiquetaUseCase;
 import com.hotel.room_service.application.transformer.EtiquetaTransformer;
 import com.hotel.room_service.domain.model.EtiquetaRequest;
 import com.hotel.room_service.shared.response.ApiResponse;

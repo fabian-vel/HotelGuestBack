@@ -1,6 +1,6 @@
-package com.hotel.room_service.controller;
+package com.hotel.room_service.controller.handler;
 
-import com.hotel.room_service.application.MenuItemUseCase;
+import com.hotel.room_service.application.usecase.MenuItemUseCase;
 import com.hotel.room_service.application.transformer.MenuItemTransformer;
 import com.hotel.room_service.domain.model.MenuItemRequest;
 import com.hotel.room_service.shared.response.ApiResponse;

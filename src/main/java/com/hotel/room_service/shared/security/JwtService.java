@@ -41,9 +41,11 @@ public class JwtService {
                     .getPayload();
 
             String habitacion = claims.getSubject();
-            return new UsernamePasswordAuthenticationToken(
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                     habitacion, null, List.of()
             );
+            auth.setDetails(claims); // ← guarda claims completos para TokenUtil
+            return auth;
         });
     }
 }

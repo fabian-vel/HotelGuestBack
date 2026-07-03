@@ -1,5 +1,6 @@
-package com.hotel.room_service.controller;
+package com.hotel.room_service.controller.router;
 
+import com.hotel.room_service.controller.handler.AuthHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -9,12 +10,11 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 
 @Configuration
-public class MenuItemRouter {
+public class AuthRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> menuItemRoutes(MenuItemHandler handler) {
+    public RouterFunction<ServerResponse> authRoutes(AuthHandler handler) {
         return RouterFunctions
-                .route(POST("/api/v1/menu"), handler::consultaItemsPorCategoria);
+                .route(POST("/api/v1/auth/login"), handler::login);
     }
 }
-

@@ -1,12 +1,11 @@
 package com.hotel.room_service.infrastructure.persistence;
 
-import com.hotel.room_service.domain.exception.InternalServerErrorException;
 import com.hotel.room_service.domain.model.Etiqueta;
 import com.hotel.room_service.domain.model.EtiquetaRequest;
 import com.hotel.room_service.domain.port.EtiquetaRepository;
 import com.hotel.room_service.infrastructure.mapper.EtiquetaRowMapper;
+import com.hotel.room_service.shared.util.AdapterErrorUtil;
 import com.hotel.room_service.shared.util.SqlLoaderUtil;
-import io.r2dbc.spi.R2dbcException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
@@ -43,9 +42,7 @@ public class EtiquetaRepositoryAdapter implements EtiquetaRepository {
                 .map((row, metadata) -> etiquetaRowMapper.mapRow(row))
                 .all()
                 .collectList()
-                .onErrorMap(R2dbcException.class, ex ->
-                        new InternalServerErrorException("Error al consultar etiquetas", ex)
-                );
+                .onErrorResume(AdapterErrorUtil.mapError("Error al consultar etiquetas"));
 
     }
 }

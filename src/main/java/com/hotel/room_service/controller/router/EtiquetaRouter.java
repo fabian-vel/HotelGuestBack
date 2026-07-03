@@ -1,5 +1,6 @@
-package com.hotel.room_service.controller;
+package com.hotel.room_service.controller.router;
 
+import com.hotel.room_service.controller.handler.EtiquetaHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -9,11 +10,11 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 
 @Configuration
-public class FechasAccesoRouter {
+public class EtiquetaRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> fechasAccesoRoutes(FechasAccesoHandler handler) {
+    public RouterFunction<ServerResponse> etiquetaRoutes(EtiquetaHandler handler) {
         return RouterFunctions
-                .route(POST("/api/v1/fechas-acceso"), handler::consultaFechasAcceso);
+                .route(POST("/api/v1/etiqueta"), handler::consultaEtiqueta);
     }
 }

@@ -2,6 +2,7 @@ package com.hotel.room_service.shared.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
@@ -19,7 +20,8 @@ public class JwtAuthenticationFilter implements WebFilter {
     private final JwtService jwtService;
 
     @Override
-    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+    @NonNull
+    public Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
         String path = exchange.getRequest().getPath().value();
 
         if (path.startsWith("/api/v1/auth")) {
@@ -30,10 +32,8 @@ public class JwtAuthenticationFilter implements WebFilter {
                 .getHeaders()
                 .getFirst(HttpHeaders.AUTHORIZATION);
 
-        log.info("Path: {}, AuthHeader presente: {}", path, authHeader != null);
-
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            log.warn("Sin token o formato inválido");
+            log.warn("Sin token o formato inválido - path: {}", path);
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
@@ -41,15 +41,15 @@ public class JwtAuthenticationFilter implements WebFilter {
         String token = authHeader.substring(7);
 
         return jwtService.validarToken(token)
+                .onErrorResume(ex -> {
+                    log.error("Token inválido - path: {}", path, ex);
+                    exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                    return exchange.getResponse().setComplete().then(Mono.empty());
+                })
                 .flatMap(authentication ->
                         chain.filter(exchange)
                                 .contextWrite(ReactiveSecurityContextHolder
                                         .withAuthentication(authentication))
-                )
-                .onErrorResume(ex -> {
-                    log.error("Error validando token: {}", ex.getMessage(), ex); // ← clave
-                    exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-                    return exchange.getResponse().setComplete();
-                });
+                );
     }
 }

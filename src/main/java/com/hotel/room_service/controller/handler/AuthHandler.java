@@ -1,6 +1,6 @@
-package com.hotel.room_service.controller;
+package com.hotel.room_service.controller.handler;
 
-import com.hotel.room_service.application.LoginUseCase;
+import com.hotel.room_service.application.usecase.LoginUseCase;
 import com.hotel.room_service.controller.dto.LoginRequest;
 import com.hotel.room_service.shared.constant.SuccessMessages;
 import com.hotel.room_service.shared.response.ApiResponse;
