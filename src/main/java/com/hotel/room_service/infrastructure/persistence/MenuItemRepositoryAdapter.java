@@ -5,6 +5,7 @@ import com.hotel.room_service.domain.model.MenuItem;
 import com.hotel.room_service.domain.model.MenuItemRequest;
 import com.hotel.room_service.domain.port.MenuItemRepository;
 import com.hotel.room_service.infrastructure.mapper.MenuItemRowMapper;
+import com.hotel.room_service.shared.util.AdapterErrorUtil;
 import com.hotel.room_service.shared.util.SqlLoaderUtil;
 import io.r2dbc.spi.R2dbcException;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +29,6 @@ public class MenuItemRepositoryAdapter implements MenuItemRepository {
                 .map((row, metadata) -> menuItemRowMapper.mapRow(row))
                 .all()
                 .collectList()
-                .onErrorMap(R2dbcException.class, ex ->
-                        new InternalServerErrorException("Error al consultar menu en BD", ex)
-                );
+                .onErrorResume(AdapterErrorUtil.mapError("Error al consultar menu en BD"));
     }
 }
