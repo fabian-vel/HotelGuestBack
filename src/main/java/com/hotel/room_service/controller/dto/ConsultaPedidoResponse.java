@@ -1,14 +1,14 @@
 package com.hotel.room_service.controller.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 public record ConsultaPedidoResponse(
         Short pediId,
         String pediHabitacion,
         BigDecimal pediTotal,
-        LocalDateTime pediFechaCreacion,
+        OffsetDateTime pediFechaCreacion,
         String pediObservacion,
         Short espeId,
         String espeNombre,

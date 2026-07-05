@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Component
@@ -21,7 +21,7 @@ public class ConsultaPedidoRowMapper {
                 .pediId(row.get("pedi_id", Short.class))
                 .pediHabitacion(row.get("pedi_habitacion", String.class))
                 .pediTotal(row.get("pedi_total", BigDecimal.class))
-                .pediFechaCreacion(row.get("pedi_fecha_creacion", LocalDateTime.class))
+                .pediFechaCreacion(row.get("pedi_fecha_creacion", OffsetDateTime.class))
                 .pediObservacion(row.get("pedi_observacion", String.class))
                 .espeId(row.get("espe_id", Short.class))
                 .espeNombre(row.get("espe_nombre", String.class))

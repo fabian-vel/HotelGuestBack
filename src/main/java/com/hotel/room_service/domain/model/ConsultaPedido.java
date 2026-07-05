@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Data
@@ -17,7 +17,7 @@ public class ConsultaPedido {
     private Short pediId;
     private String pediHabitacion;
     private BigDecimal pediTotal;
-    private LocalDateTime pediFechaCreacion;
+    private OffsetDateTime pediFechaCreacion;
     private String pediObservacion;
     private Short espeId;
     private String espeNombre;
