@@ -8,4 +8,5 @@ import java.util.List;
 public interface ItemsEspecialesRepository {
     Mono<List<ItemEspecial>> consultarItemsMasPedidos(int cantidad);
     Mono<List<ItemEspecial>> consultarItemsMasRecientes(int cantidad);
+    Mono<List<ItemEspecial>> consultarItemsRecomendadosChef(int cantidad, Short etiqueta);
 }

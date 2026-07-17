@@ -14,7 +14,8 @@ public class ItemsEspecialesTransformer {
     public static ItemsEspecialesResponse toResponse(ItemsEspeciales domain) {
         return new ItemsEspecialesResponse(
                 toItemEspecialResponseList(domain.getItemsMasPedidos()),
-                toItemEspecialResponseList(domain.getItemsMasRecientes())
+                toItemEspecialResponseList(domain.getItemsMasRecientes()),
+                toItemEspecialResponseList(domain.getItemsRecomendados())
         );
     }
 

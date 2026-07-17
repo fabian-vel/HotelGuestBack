@@ -19,11 +19,13 @@ public class ItemsEspecialesAdapter implements ItemsEspecialesRepository {
     private final ItemsEspecialesRowMapper itemsEspecialesRowMapper;
     private final String sqlMasPedidos = SqlLoaderUtil.load("querys/items_mas_pedidos.sql");
     private final String sqlMasRecientes = SqlLoaderUtil.load("querys/items_mas_recientes.sql");
+    private final String sqlRecomendados = SqlLoaderUtil.load("querys/items_recomendados_chef.sql");
+    private static final String CANTIDAD = "CANTIDAD";
 
     @Override
     public Mono<List<ItemEspecial>> consultarItemsMasPedidos(int cantidad) {
         return databaseClient.sql(sqlMasPedidos)
-                .bind("CANTIDAD", cantidad)
+                .bind(CANTIDAD, cantidad)
                 .map((row, metadata) -> itemsEspecialesRowMapper.mapRow(row))
                 .all()
                 .collectList()
@@ -33,10 +35,21 @@ public class ItemsEspecialesAdapter implements ItemsEspecialesRepository {
     @Override
     public Mono<List<ItemEspecial>> consultarItemsMasRecientes(int cantidad) {
         return databaseClient.sql(sqlMasRecientes)
-                .bind("CANTIDAD", cantidad)
+                .bind(CANTIDAD, cantidad)
                 .map((row, metadata) -> itemsEspecialesRowMapper.mapRow(row))
                 .all()
                 .collectList()
                 .onErrorResume(AdapterErrorUtil.mapError("Error al consultar items mas resientes"));
+    }
+
+    @Override
+    public Mono<List<ItemEspecial>> consultarItemsRecomendadosChef(int cantidad, Short etiqueta) {
+        return databaseClient.sql(sqlRecomendados)
+                .bind("ETIQUETA", etiqueta)
+                .bind(CANTIDAD, cantidad)
+                .map((row, metadata) -> itemsEspecialesRowMapper.mapRow(row))
+                .all()
+                .collectList()
+                .onErrorResume(AdapterErrorUtil.mapError("Error al consultar items recomendados por el chef"));
     }
 }

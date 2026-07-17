@@ -4,5 +4,6 @@ import java.util.List;
 
 public record ItemsEspecialesResponse(
         List<ItemEspecialResponse> itemsMasPedidos,
-        List<ItemEspecialResponse> itemsMasRecientes
+        List<ItemEspecialResponse> itemsMasRecientes,
+        List<ItemEspecialResponse> itemsRecomendadosChef
 ) {}

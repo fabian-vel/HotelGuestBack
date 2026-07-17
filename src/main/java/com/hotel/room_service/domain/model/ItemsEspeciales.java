@@ -15,4 +15,5 @@ import java.util.List;
 public class ItemsEspeciales {
     List<ItemEspecial> itemsMasPedidos = new ArrayList<>();
     List<ItemEspecial> itemsMasRecientes = new ArrayList<>();
+    List<ItemEspecial> itemsRecomendados = new ArrayList<>();
 }

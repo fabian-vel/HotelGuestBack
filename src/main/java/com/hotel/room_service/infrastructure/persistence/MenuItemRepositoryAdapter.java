@@ -1,13 +1,11 @@
 package com.hotel.room_service.infrastructure.persistence;
 
-import com.hotel.room_service.domain.exception.InternalServerErrorException;
 import com.hotel.room_service.domain.model.MenuItem;
 import com.hotel.room_service.domain.model.MenuItemRequest;
 import com.hotel.room_service.domain.port.MenuItemRepository;
 import com.hotel.room_service.infrastructure.mapper.MenuItemRowMapper;
 import com.hotel.room_service.shared.util.AdapterErrorUtil;
 import com.hotel.room_service.shared.util.SqlLoaderUtil;
-import io.r2dbc.spi.R2dbcException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
