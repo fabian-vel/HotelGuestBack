@@ -1,4 +1,4 @@
-# HotelGuest — Backend · `room-service`
+# HotelGuest — Backend · `room-service-api`
 
 Microservicio REST reactivo que expone la API para la aplicación móvil **HotelGuest**, orientada a mejorar la experiencia de los huéspedes de un hotel.
 
@@ -136,7 +136,7 @@ El archivo de configuración se encuentra en `src/main/resources/application.yam
 ```yaml
 spring:
   application:
-    name: room-service
+    name: room-service-api
 
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/postgres?sslMode=DISABLE&schema=public

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: room-service
+    name: room-service-api
 
   # ── Base de datos R2DBC (reactivo) ──────────────────────────────────────────
   r2dbc:

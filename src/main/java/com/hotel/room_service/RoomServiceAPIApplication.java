@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "com.hotel")
-public class RoomServiceApplication {
+public class RoomServiceAPIApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RoomServiceApplication.class, args);
+		SpringApplication.run(RoomServiceAPIApplication.class, args);
 	}
 
 }
