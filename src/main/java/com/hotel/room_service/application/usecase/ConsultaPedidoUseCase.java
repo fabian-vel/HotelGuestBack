@@ -15,8 +15,12 @@ public class ConsultaPedidoUseCase {
     private final ConsultaPedidoRepository consultaPedidoRepository;
     private final TokenUtil tokenUtil;
 
-    public Mono<List<ConsultaPedido>> consultarPedido() {
+    public Mono<List<ConsultaPedido>> consultarPedidoPorUsuario() {
         return tokenUtil.getHaacId()
-                .flatMap(consultaPedidoRepository::consultarPedido);
+                .flatMap(consultaPedidoRepository::consultarPedidoPorUsuario);
+    }
+
+    public Mono<List<ConsultaPedido>> consultarPedidoFechaActual() {
+        return consultaPedidoRepository.consultarPedidoFechaActual();
     }
 }

@@ -13,8 +13,14 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class ConsultaPedidoRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> consultarPedidoRoutes(ConsultaPedidoHandler handler) {
+    public RouterFunction<ServerResponse> consultarPedidoPorUsuarioRoutes(ConsultaPedidoHandler handler) {
         return RouterFunctions
-                .route(GET("/api/v1/consulta-pedidos"), request -> handler.consultarPedido());
+                .route(GET("/api/v1/consulta-pedidos"), request -> handler.consultarPedidoPorUsuario());
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> consultarPedidoFechaActualRoutes(ConsultaPedidoHandler handler) {
+        return RouterFunctions
+                .route(GET("/api/v1/consulta-pedidos-fecha-actual"), request -> handler.consultarPedidoFechaActual());
     }
 }

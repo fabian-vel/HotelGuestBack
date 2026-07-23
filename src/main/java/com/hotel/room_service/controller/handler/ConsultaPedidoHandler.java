@@ -14,8 +14,8 @@ import reactor.core.publisher.Mono;
 public class ConsultaPedidoHandler {
     private final ConsultaPedidoUseCase consultaPedidoUseCase;
 
-    public Mono<ServerResponse> consultarPedido() {
-        return consultaPedidoUseCase.consultarPedido()
+    public Mono<ServerResponse> consultarPedidoPorUsuario() {
+        return consultaPedidoUseCase.consultarPedidoPorUsuario()
                 .map(pedidos -> pedidos.stream()
                         .map(ConsultaPedidoTransformer::toResponse)
                         .toList()
@@ -24,6 +24,22 @@ public class ConsultaPedidoHandler {
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(ApiResponse.ok(
                                 "Pedidos consultados exitosamente",
+                                pedidos,
+                                pedidos.size()
+                        ))
+                );
+    }
+
+    public Mono<ServerResponse> consultarPedidoFechaActual() {
+        return consultaPedidoUseCase.consultarPedidoFechaActual()
+                .map(pedidos -> pedidos.stream()
+                        .map(ConsultaPedidoTransformer::toResponse)
+                        .toList()
+                )
+                .flatMap(pedidos -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(ApiResponse.ok(
+                                "Pedidos del dia consultados exitosamente",
                                 pedidos,
                                 pedidos.size()
                         ))

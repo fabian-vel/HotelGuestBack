@@ -6,5 +6,6 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface ConsultaPedidoRepository {
-    Mono<List<ConsultaPedido>> consultarPedido(Short haacId);
+    Mono<List<ConsultaPedido>> consultarPedidoPorUsuario(Short haacId);
+    Mono<List<ConsultaPedido>> consultarPedidoFechaActual();
 }

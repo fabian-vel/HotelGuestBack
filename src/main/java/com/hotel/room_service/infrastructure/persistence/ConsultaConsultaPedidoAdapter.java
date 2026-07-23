@@ -18,14 +18,24 @@ public class ConsultaConsultaPedidoAdapter implements ConsultaPedidoRepository {
     private final DatabaseClient databaseClient;
     private final ConsultaPedidoRowMapper consultaPedidoRowMapper;
     private final String sql = SqlLoaderUtil.load("querys/consulta_pedidos.sql");
+    private final String sqlFechaActual = SqlLoaderUtil.load("querys/consulta-pedidos-actual.sql");
 
     @Override
-    public Mono<List<ConsultaPedido>> consultarPedido(Short haacId) {
+    public Mono<List<ConsultaPedido>> consultarPedidoPorUsuario(Short haacId) {
         return databaseClient.sql(sql)
                 .bind("haacId", haacId)
                 .map((row, metadata) -> consultaPedidoRowMapper.mapRow(row))
                 .all()
                 .collectList()
                 .onErrorResume(AdapterErrorUtil.mapError("Error al consultar pedidos en BD"));
+    }
+
+    @Override
+    public Mono<List<ConsultaPedido>> consultarPedidoFechaActual() {
+        return databaseClient.sql(sqlFechaActual)
+                .map((row, metadata) -> consultaPedidoRowMapper.mapRow(row))
+                .all()
+                .collectList()
+                .onErrorResume(AdapterErrorUtil.mapError("Error al consultar pedidos por fecha actual en BD"));
     }
 }
