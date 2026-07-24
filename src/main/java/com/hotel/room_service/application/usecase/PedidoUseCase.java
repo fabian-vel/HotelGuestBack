@@ -16,6 +16,7 @@ public class PedidoUseCase {
 
     private final MotorReglas<PedidoContexto> motorReglas;
     private final TokenUtil tokenUtil;
+    private final PedidoNotificationUseCase pedidoNotificationUseCase;
 
     private static final List<String> REGLAS = List.of(
             "INFERIR_DATOS_PEDIDO",
@@ -41,9 +42,12 @@ public class PedidoUseCase {
                 )
                 .flatMap(contexto ->
                         motorReglas.aplicar(REGLAS, contexto)
-                                .then(Mono.defer(() ->
-                                        Mono.just("Pedido realizado con éxito")
+                                .then(Mono.fromRunnable(() ->
+                                                pedidoNotificationUseCase.publishCreated(
+                                                        contexto.getResponse().getPedidoId()
+                                                )
+                                        )
                                 ))
-                );
+                .thenReturn("Pedido realizado con éxito");
     }
 }
