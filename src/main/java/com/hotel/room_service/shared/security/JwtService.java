@@ -1,5 +1,6 @@
 package com.hotel.room_service.shared.security;
 
+import com.hotel.room_service.domain.model.Empleado;
 import com.hotel.room_service.domain.model.HabitacionAcceso;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -10,7 +11,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -47,5 +50,16 @@ public class JwtService {
             auth.setDetails(claims); // ← guarda claims completos para TokenUtil
             return auth;
         });
+    }
+
+    public String generarTokenEmpleado(Empleado empleado) {
+        return Jwts.builder()
+                .subject(empleado.getEmplUsuario())
+                .claim("nombre", empleado.getEmplNombre())
+                .claim("rol", empleado.getEmplRol())
+                .issuedAt(new Date())
+                .expiration(Date.from(Instant.now().plus(8, ChronoUnit.HOURS)))
+                .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
+                .compact();
     }
 }
