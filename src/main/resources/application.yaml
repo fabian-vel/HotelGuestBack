@@ -27,6 +27,7 @@ logging:
     com.hotel: DEBUG
     org.springframework.r2dbc: INFO
     org.springframework.r2dbc.core.DefaultDatabaseClient: OFF
+    reactor.netty: WARN # ← evita que Netty logee las URLs completas
 # ── JWT ─────────────────────────────────────────────────────────────────────
 jwt:
   secret: qX8$Nf2!Kz7@Lp4#Rw9&Ty6*Vm3%Hs1^Dc5?Bj8+Ua2=Eg7!

@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .pathMatchers("/api/v1/auth/**").permitAll()
                         //.pathMatchers("/api/v1/cocina/**").hasRole("COCINA")
                         //.pathMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        .pathMatchers("/ws/**").permitAll()
                         .anyExchange().authenticated()
                 )
                 .addFilterAt(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)

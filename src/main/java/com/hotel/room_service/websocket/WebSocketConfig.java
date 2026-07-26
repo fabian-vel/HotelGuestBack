@@ -17,16 +17,9 @@ public class WebSocketConfig {
 
     @Bean
     HandlerMapping webSocketMapping() {
-
-        SimpleUrlHandlerMapping mapping =
-                new SimpleUrlHandlerMapping();
+        SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
         mapping.setOrder(1);
-        mapping.setUrlMap(
-                Map.of(
-                        "/ws/pedidos",
-                        handler
-                )
-        );
+        mapping.setUrlMap(Map.of("/ws/pedidos", handler));
         return mapping;
     }
 
