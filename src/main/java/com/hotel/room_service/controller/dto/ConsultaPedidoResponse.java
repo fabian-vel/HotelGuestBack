@@ -18,6 +18,9 @@ public record ConsultaPedidoResponse(
             Short meitId,
             String meitNombre,
             int pedeCantidad,
-            BigDecimal pedeSubtotal
+            BigDecimal pedeSubtotal,
+            Short mecaParentId,
+            Short mecaId,
+            String mecaNombre
     ) {}
 }

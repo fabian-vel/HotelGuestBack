@@ -27,7 +27,10 @@ public class ConsultaPedidoTransformer {
                 detalle.getMeitId(),
                 detalle.getMeitNombre(),
                 detalle.getPedeCantidad(),
-                detalle.getPedeSubtotal()
+                detalle.getPedeSubtotal(),
+                detalle.getMecaParentId(),
+                detalle.getMecaId(),
+                detalle.getMecaNombre()
         );
     }
 }

@@ -32,5 +32,8 @@ public class ConsultaPedido {
         private String meitNombre;
         private int pedeCantidad;
         private BigDecimal pedeSubtotal;
+        private Short mecaParentId;
+        private Short mecaId;
+        private String mecaNombre;
     }
 }

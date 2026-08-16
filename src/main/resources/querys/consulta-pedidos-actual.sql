@@ -10,7 +10,10 @@ SELECT P.pedi_id,
                        'meitId', MI.meit_id,
                        'meitNombre', MI.meit_nombre,
                        'pedeCantidad', PD.pede_cantidad,
-                       'pedeSubtotal', PD.pede_subtotal
+                       'pedeSubtotal', PD.pede_subtotal,
+                       'mecaParentId', MI.meca_parent_id,
+                       'mecaId', MI.meca_id,
+                       'mecaNombre', MC.meca_nombre
                )
        ) FILTER (WHERE PD.pede_estado = 'A') AS pedido_detalle
 FROM tbl_pedidos P
@@ -22,6 +25,8 @@ FROM tbl_pedidos P
                        AND PD.pede_fecha_eliminacion IS NULL
          LEFT JOIN tbl_menu_items MI
                    ON MI.meit_id = PD.meit_id
+         LEFT JOIN mst_menu_categorias MC
+                   ON MC.meca_id = MI.meca_id
 WHERE P.pedi_estado = 'A'
   AND P.pedi_fecha_eliminacion IS NULL
 --AND P.pedi_fecha_creacion::date = CURRENT_DATE
